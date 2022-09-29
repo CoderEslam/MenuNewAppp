@@ -1,0 +1,61 @@
+td {
+    padding: 41px;
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+}
+
+td:hover {
+    background: #77da4d;
+    color: #808080 !important
+}
+
+
+.active {
+    background-color: #77da4d;
+    color: #fff;
+}
+
+.bottom {
+    margin-bottom: 30px;
+}
+
+div.table {
+    padding: 15px;
+    text-align: left;
+}
+
+h1 {
+    background: #489B37;
+    padding: 15px;
+    text-align: center;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    align-content: center;
+    border-collapse: collapse;
+}
+
+button {
+    background-color: #ffffff;
+    color: black;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, button:hover {
+    background-color: #555;
+}
