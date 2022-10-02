@@ -1,6 +1,6 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
 import {
-    getDatabase, ref, set, onValue, get, child, query
+    getDatabase, ref, set, onValue, get, child, query, orderByChild
 } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js";
 
 const firebaseConfig = {
@@ -16,7 +16,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 var databaseref = getDatabase(app);
-var Menu = ref(databaseref, 'Menu')
+var Menu = query(ref(databaseref, 'Menu'), orderByChild('index'));
 var Food = ref(databaseref, 'Food')
 
 var divTable = document.getElementById("table");
@@ -48,6 +48,19 @@ function getAllFood() {
             h1.innerHTML = arrayMenu[i].name;
             document.getElementById("table").appendChild(h1)
             var table = document.createElement("table");
+            var nameth = document.createElement("th");
+            nameth.innerHTML = "Name"
+            var decth = document.createElement("th");
+            decth.innerHTML = "Details"
+            var priceth = document.createElement("th");
+            priceth.innerHTML = "Price"
+            var imageth = document.createElement("th");
+            imageth.innerHTML = "Image"
+            table.appendChild(nameth);
+            table.appendChild(decth);
+            table.appendChild(priceth);
+            table.appendChild(imageth);
+
             for (let j in food) {
                 /*var childKeyFood = foodSnapshot.key;
                 var childDataFood = foodSnapshot.val();
@@ -67,7 +80,7 @@ function getAllFood() {
                         var p = document.createElement("p");
                         SummaryDetails.appendChild(summary);
                         SummaryDetails.appendChild(p);
-                        summary.innerHTML = food[j].details.substring(0, 15)+"...";
+                        summary.innerHTML = food[j].details.substring(0, 15) + "...";
                         p.innerHTML = food[j].details;
                         details.appendChild(SummaryDetails);
                     } else {
