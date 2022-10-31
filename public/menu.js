@@ -127,6 +127,7 @@ function getAllFood() {
                         var nameLarge = document.createElement("td");
                         nameLarge.setAttribute('class', 'tdPrice');
 
+                        // for all
                         if ((food[j].priceSmall !== 0 && typeof food[j].priceSmall !== 'undefined') && (food[j].priceMedium !== 0 && typeof food[j].priceMedium !== 'undefined') && (food[j].priceLarge !== 0 && typeof food[j].priceLarge !== 'undefined')) {
                             nameSmall.innerHTML = food[j].priceSmall;
                             nameMedium.innerHTML = food[j].priceMedium;
@@ -137,22 +138,31 @@ function getAllFood() {
                             tablePrice.appendChild(trPrice);
                             price.appendChild(tablePrice)
                             // price.innerHTML = food[j].priceSmall + "" + "<sup>S</sup>" + "    " + food[j].priceMedium + "" + "<sup>M</sup>" + "    " + food[j].priceLarge + "" + "<sup>L</sup>";
-                        } else if (typeof food[j].priceSmall === 'undefined' && typeof food[j].priceMedium === 'undefined' && typeof food[j].priceLarge === 'undefined') {
+                        }
+                        // for no one done
+                        else if (typeof food[j].priceSmall === 'undefined' && typeof food[j].priceMedium === 'undefined' && typeof food[j].priceLarge === 'undefined') {
                             price.innerHTML = "there is no money" + " " + "<sup>Dh</sup>";
-                        } else if (food[j].priceSmall === 0 && (typeof food[j].priceMedium === 'undefined' || food[j].priceMedium === 0) && (typeof food[j].priceLarge === 'undefined' || food[j].priceLarge === 0)) {
+                        }
+                        // for no one done
+                        else if ((food[j].priceSmall === 0 || typeof food[j].priceSmall === 'undefined') && (typeof food[j].priceMedium === 'undefined' || food[j].priceMedium === 0) && (typeof food[j].priceLarge === 'undefined' || food[j].priceLarge === 0)) {
                             price.innerHTML = "there is no money" + " " + "<sup>Dh</sup>";
-                            // in small and Medium
-                        } else if ((food[j].priceSmall !== 0 && typeof food[j].priceSmall !== 'undefined') && (food[j].priceMedium !== 0 && typeof food[j].priceMedium !== 'undefined') && (typeof food[j].priceLarge === 'undefined' || food[j].priceLarge === 0)) {
+                        }
+                        // for small and Medium
+                        else if ((food[j].priceSmall !== 0 && typeof food[j].priceSmall !== 'undefined') && (food[j].priceMedium !== 0 && typeof food[j].priceMedium !== 'undefined') && (typeof food[j].priceLarge === 'undefined' || food[j].priceLarge === 0)) {
                             nameSmall.innerHTML = food[j].priceSmall;
                             nameMedium.innerHTML = food[j].priceMedium;
                             trPrice.appendChild(nameSmall);
                             trPrice.appendChild(nameMedium);
                             tablePrice.appendChild(trPrice);
                             price.appendChild(tablePrice)
-                        } else if (food[j].priceSmall !== 0 && food[j].priceLarge !== 0 && (typeof food[j].priceMedium === 'undefined' || food[j].priceMedium === 0)) {
+                        }
+                        // for small and Large
+                        else if ((food[j].priceSmall !== 0 && typeof food[j].priceSmall !== 'undefined') && (food[j].priceLarge !== 0 && typeof food[j].priceLarge !== 'undefined') && (typeof food[j].priceMedium === 'undefined' || food[j].priceMedium === 0)) {
                             nameSmall.innerHTML = food[j].priceSmall;
+                            nameMedium.innerHTML = "";
                             nameLarge.innerHTML = food[j].priceLarge;
                             trPrice.appendChild(nameSmall);
+                            trPrice.appendChild(nameMedium);
                             trPrice.appendChild(nameLarge);
                             tablePrice.appendChild(trPrice);
                             price.appendChild(tablePrice)
