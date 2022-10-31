@@ -151,15 +151,17 @@ function getAllFood() {
                         else if ((food[j].priceSmall !== 0 && typeof food[j].priceSmall !== 'undefined') && (food[j].priceMedium !== 0 && typeof food[j].priceMedium !== 'undefined') && (typeof food[j].priceLarge === 'undefined' || food[j].priceLarge === 0)) {
                             nameSmall.innerHTML = food[j].priceSmall;
                             nameMedium.innerHTML = food[j].priceMedium;
+                            nameLarge.innerHTML = "--";
                             trPrice.appendChild(nameSmall);
                             trPrice.appendChild(nameMedium);
+                            trPrice.appendChild(nameLarge);
                             tablePrice.appendChild(trPrice);
                             price.appendChild(tablePrice)
                         }
                         // for small and Large
                         else if ((food[j].priceSmall !== 0 && typeof food[j].priceSmall !== 'undefined') && (food[j].priceLarge !== 0 && typeof food[j].priceLarge !== 'undefined') && (typeof food[j].priceMedium === 'undefined' || food[j].priceMedium === 0)) {
                             nameSmall.innerHTML = food[j].priceSmall;
-                            nameMedium.innerHTML = "";
+                            nameMedium.innerHTML = "--";
                             nameLarge.innerHTML = food[j].priceLarge;
                             trPrice.appendChild(nameSmall);
                             trPrice.appendChild(nameMedium);
