@@ -184,7 +184,6 @@ function getAllFood() {
                         tdimg.appendChild(img)
                         table.appendChild(tr);
                         table_div.appendChild(table)
-                        // console.log(menu[i].name + " => " + food[j].name);
                     }
                 }
 
@@ -194,22 +193,3 @@ function getAllFood() {
     });
 }
 
-
-/*const commentsRef = query(ref(databaseref, 'Menu'), orderByChild('index'))
-onChildAdded(commentsRef, (data) => {
-    // var c = 0;
-    // for (let i in menu) {
-    // arrayMenu[data.val().id] = {"id": data.val().id, "name": data.val().name}
-    // c++;
-    // console.log(arrayMenu)
-    // }
-    // getAllFood();
-});
-
-onChildChanged(commentsRef, (data) => {
-    console.log(data.val());
-});
-
-onChildRemoved(commentsRef, (data) => {
-    console.log(data.val());
-});*/
