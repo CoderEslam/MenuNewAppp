@@ -1,18 +1,29 @@
+@font-face {
+    font-family: 'IndieFlower-Regular';
+    src: url("fonts/IndieFlower-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Dance';
+    src: url("fonts/DancingScript-Regular.ttf");
+}
+
 
 td {
-    padding: 20px;
+    padding: 10px;
     font-size: 25px;
     color: #964B00;
     text-align: center;
-    width: 200px;
-    height: 50px;
+    width: 100px;
+    height: 25px;
     font-weight: bold;
-
+    font-family: 'IndieFlower-Regular';
 }
 
 th {
     color: rgb(179, 94, 26);
     font-size: 30px;
+    font-family: 'Dance';
 }
 
 td:hover {
@@ -36,7 +47,7 @@ div.table {
 }
 
 h1 {
-    background: #f59921;
+    background: #c77a4d;
     padding: 15px;
     text-align: center;
     align-items: center;
@@ -56,16 +67,19 @@ img {
 
 }
 
-table, th, td {
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
-    align-content: center;
-    border-collapse: collapse;
+table {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    /*align-items: center;*/
+    /*align-content: center;*/
+    /*border-collapse: collapse;*/
     /*border: green solid 1px;*/
-    elevation: above;
-    margin-top: 50px;
-
+    /*margin-top: 50px;*/
+    padding-bottom: 230px;
+    padding-top: 500px;
 
 }
 
@@ -84,9 +98,6 @@ table, th, td {
     width: 100px;
     height: 40px;
     font-weight: bold;
-}
-
-td {
 }
 
 button {
@@ -111,26 +122,26 @@ button {
     width: 500px;
 }
 
-.bottom-right #bottom-r {
+.bottom-right .img-bottom-r {
     position: fixed;
     right: 0;
     bottom: 0;
     margin-right: -120px;
     margin-bottom: -20px;
-    height: 150px;
+    height: 500px;
     width: 535px;
-    z-index: -1;
+    /*z-index: -1;*/
 }
 
-.top-left #top-l {
+.top-left .img-top-l {
     position: fixed;
     top: 0;
     left: 0;
     margin-left: -100px;
     margin-top: -40px;
-    height: 200px;
+    height: 500px;
     width: 655px;
-    z-index: -1;
+    /*z-index: -1;*/
 
 }
 
@@ -144,6 +155,15 @@ button {
     color: rgba(255, 255, 255, 0);
     align-content: center;
     align-items: center;
+}
+
+.image-background-table {
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background-repeat: no-repeat;
+    max-width: 100%;
 }
 
 
