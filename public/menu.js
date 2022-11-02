@@ -59,76 +59,27 @@ function getAllFood() {
     onValue(Food, (snapshotFood) => {
         food = snapshotFood.val();
         for (let i = 0; i < arrayMenu.length; i++) {
-            // var h1 = document.createElement("h1");
-            // h1.innerHTML = arrayMenu[i].name;
             var table_div = document.createElement("div");
-            var div_top_left = document.createElement('div');
-            var div_bottom_right = document.createElement('div');
-            div_bottom_right.setAttribute('class', 'bottom-right');
-            div_top_left.setAttribute('class', 'top-left');
             var table = document.createElement("table");
             var nameth = document.createElement("th");
-            // image_bg.setAttribute('class', 'image-background-table')
-
-            // table_div.appendChild(h1);
-            // image_bg.setAttribute('src', arrayMenu[i].image);
-            // table.setAttribute('background', 'image/bg2.jpg');
-            table.setAttribute('background', new URL(arrayMenu[i].image_bg).href);
-            var img_bottom_r = document.createElement('img');
-            img_bottom_r.setAttribute('class', 'img-bottom-r')
-
-            // var bottom_r = document.getElementById("bottom-r");
-            img_bottom_r.setAttribute('src', arrayMenu[i].image);
-            var img_top_l = document.createElement('img');
-            div_top_left.appendChild(img_top_l);
-            div_bottom_right.appendChild(img_bottom_r);
-            // var top_l = document.getElementById("top-l");
-            img_top_l.setAttribute('class', 'img-top-l')
-            img_top_l.setAttribute('src', arrayMenu[i].image);
-            //////////////////////////////////////////
-            // table_div.appendChild(div_bottom_right);
-            // table_div.appendChild(div_top_left);
-            //////////////////////////////////////////
-            nameth.innerHTML = "Name"
-            // var decth = document.createElement("th");
-            // decth.innerHTML = "Details"
+            var dots = document.createElement("th");
             var priceth = document.createElement("th");
+            table.setAttribute('background', new URL(arrayMenu[i].image_bg).href);
+            nameth.innerHTML = "Name"
             priceth.innerHTML = "Price"
-            // var imageth = document.createElement("th");
-            // imageth.innerHTML = "Image"
+            dots.innerHTML = "";
             table.appendChild(nameth);
-            // table.appendChild(decth);
+            table.appendChild(dots);
             table.appendChild(priceth);
-            // table.appendChild(imageth);
-
             for (let j in food) {
-                /*var childKeyFood = foodSnapshot.key;
-                var childDataFood = foodSnapshot.val();
-                var td = document.createElement("td");
-                var cellText = document.createTextNode(childDataFood.name);
-                td.appendChild(cellText);
-                tr.appendChild(td);*/
                 if (food[j].classification !== "VIP") {
                     if (arrayMenu[i].id === food[j].idMenu) {
                         var tr = document.createElement("tr");
                         var name = document.createElement("td");
-                        name.innerHTML = food[j].name;
-                        // var details = document.createElement("td");
-                        // details.innerHTML = food[j].details;
-                        // if (food[j].details.length > 20) {
-                        //     var SummaryDetails = document.createElement("details");
-                        //     var summary = document.createElement("summary");
-                        //     var p = document.createElement("p");
-                        //     SummaryDetails.appendChild(summary);
-                        //     SummaryDetails.appendChild(p);
-                        //     summary.innerHTML = food[j].details.substring(0, 10) + "...";
-                        //     p.innerHTML = food[j].details;
-                        //     details.appendChild(SummaryDetails);
-                        // } else {
-                        //     details.innerHTML = food[j].details;
-                        // }
-                        // var tdimg = document.createElement("td");
+                        var _dots_ = document.createElement("td");
                         var price = document.createElement("td");
+                        name.innerHTML = food[j].name;
+                        _dots_.innerHTML = "..................................................................";
                         console.log(typeof food[j].priceSmall === 'undefined');
                         var tablePrice = document.createElement("table");
                         tablePrice.setAttribute('class', 'tablePrice');
@@ -198,15 +149,9 @@ function getAllFood() {
                         } else if ((food[j].priceSmall === 0 || typeof food[j].priceSmall === 'undefined') && (food[j].priceMedium === 0 || typeof food[j].priceMedium === 'undefined') && (food[j].priceLarge === 0 || typeof food[j].priceLarge === 'undefined')) {
                             price.innerHTML = "there is no money" + " " + "<sup>Dh</sup>";
                         }
-
-
-                        // var img = document.createElement("img");
-                        // img.setAttribute('src', food[j].image);
                         tr.appendChild(name);
-                        // tr.appendChild(details);
+                        tr.appendChild(_dots_);
                         tr.appendChild(price);
-                        // tr.appendChild(tdimg);
-                        // tdimg.appendChild(img)
                         table.appendChild(tr);
                         table_div.appendChild(table)
                         document.getElementById('table_div').appendChild(table_div);
