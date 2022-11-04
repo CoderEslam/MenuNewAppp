@@ -66,29 +66,40 @@ function getAllFood() {
             img.setAttribute('src', arrayMenu[i].image_bg);
             var div_centered = document.createElement('div');
             div_centered.setAttribute('class', 'centered');
+            if (arrayMenu[i].name === 'PÂTES') {
+                div_centered.style.marginTop = '650px';
+            }
             div_parent.append(div_centered)
             div_parent.append(img)
             for (let j in food) {
                 if (food[j].classification !== "VIP") {
                     if (arrayMenu[i].id === food[j].idMenu) {
                         var spanName = document.createElement('span')
+                        spanName.setAttribute('class', 'nameSpan')
                         var spanDot = document.createElement('span')
+                        spanDot.setAttribute('class', 'dots');
                         var spanPrice = document.createElement('span')
                         var _div_ = document.createElement('div')
-                        spanName.innerHTML = food[j].name
-                        var loop = 50 - 2 - food[j].name.length
-                        var d = ""
-                        for (let i = 0; i < loop; i++) {
-                            d = d + ".";
+                        spanName.innerHTML = food[j].name + " : ......................................"
+                        if (arrayMenu[i].name === 'PÂTES') {
+                            spanName.innerHTML = food[j].name + '&ensp;' + ':......................................'
+                            spanDot.style.width = '450px'
+                            spanDot.style.maxWidth = '450px'
+                            if (food[j].details.length > 0) {
+                                spanDot.innerHTML = food[j].details + '.................................................................................. '
+                            } else {
+                                spanDot.innerHTML = '.................................................................................. '
+                            }
+                        } else {
+                            spanDot.innerHTML = '.................................................. '
                         }
-                        spanDot.innerHTML = d
                         // for all
                         if (food[j].priceSmall !== 0 && food[j].priceMedium !== 0 && food[j].priceLarge !== 0) {
                             spanPrice.innerHTML = food[j].priceSmall + "<span><sup>S</sup>&ensp;&ensp;</span>" + food[j].priceMedium + "<span><sup>M</sup>&ensp;&ensp;</span>" + food[j].priceLarge + "<span><sup>L</sup>&ensp;&ensp;</span>"
                         }
                         // for small only
                         else if (food[j].priceSmall !== 0 && (food[j].priceMedium === 0 || food[j].priceMedium === 'undefined') && (food[j].priceLarge === 0 || food[j].priceLarge === 'undefined')) {
-                            spanPrice.innerHTML = food[j].priceSmall + "<span><sup>S</sup</span>";
+                            spanPrice.innerHTML = food[j].priceSmall + "<span><sup>Dh</sup</span>";
                         }
                         // for small and medium
                         else if (food[j].priceSmall !== 0 && (food[j].priceMedium !== 0 && food[j].priceMedium !== 'undefined') && (food[j].priceLarge === 0 || food[j].priceLarge === 'undefined')) {
@@ -103,10 +114,8 @@ function getAllFood() {
                         div_centered.append(spanPrice);
                         div_centered.append(_div_);
                         document.getElementById('parent').append(div_parent);
-
                     }
                 }
-
             }
         }
 
