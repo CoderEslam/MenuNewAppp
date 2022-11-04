@@ -81,7 +81,7 @@ function getAllFood() {
                         var spanPrice = document.createElement('span')
                         var _div_ = document.createElement('div')
                         spanName.innerHTML = food[j].name + " : ......................................"
-                        if (arrayMenu[i].name === 'PÂTES') {
+                        if (arrayMenu[i].name.toUpperCase() === 'PÂTES' || arrayMenu[i].name.toUpperCase() === 'PATES') {
                             spanName.innerHTML = food[j].name + '&ensp;' + ':......................................'
                             spanDot.style.width = '450px'
                             spanDot.style.maxWidth = '450px'
