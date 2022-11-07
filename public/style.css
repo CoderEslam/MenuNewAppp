@@ -5,91 +5,61 @@
 
 @font-face {
     font-family: 'Dance';
-    src: url("fonts/DancingScript-Regular.ttf");
+    src: url("fonts/DancingScript-Bold.ttf");
 }
 
+.centered {
+    position: absolute;
+    width: 900px;
+    margin-top: 500px;
+    margin-left: 70px;
+    margin-right: 50px;
+    color: #000000;
+    text-align: left;
 
-td {
-    padding: 5px;
+}
+
+sup {
     font-size: 25px;
-    color: #964B00;
+}
+
+.container {
+    position: relative;
     text-align: center;
-    width: 100px;
-    height: 25px;
-    font-weight: bold;
-    font-family: 'IndieFlower-Regular';
-}
-
-th {
-    color: rgb(179, 94, 26);
-    font-size: 30px;
-    font-family: 'Dance';
-}
-
-td:hover {
-    /*background: #77da4d;*/
-    color: #ffb771 !important
-}
-
-
-h1 {
-    background: #c77a4d;
-    padding: 15px;
-    text-align: center;
-    align-items: center;
-    width: 300px;
-    align-self: center;
-    margin: 0 auto;
-    border-radius: 50%;
-    margin-top: 100px;
-
-}
-
-
-table {
     width: 100%;
-    align-self: center;
-    align-items: center;
-    margin: auto;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    padding-bottom: 230px;
-    padding-top: 500px;
+    color: white;
+    z-index: 20;
 
 }
 
-.tablePrice, .thPrice, .tdPrice {
-    /*border: #f59921 solid 1px;*/
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
-    align-content: center;
-    border-collapse: collapse;
-    padding: 10px;
-    font-size: 25px;
-    color: #964B00;
-    text-align: center;
-    width: 100px;
-    height: 40px;
-    font-weight: bold;
-}
-
-
+/* for text size for span*/
 span {
     font-size: 25px;
-    align-self: center;
-    align-items: center;
-    margin: auto;
+    text-align: left;
+    font-family: Dance, serif;
+    /*display: inline-block;*/
 }
 
-div {
+.dots {
+    display: inline-block;
+    width: 300px;
+    max-width: 300px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap:break-word;
+}
+
+.nameSpan {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 200px;
+    white-space: nowrap;
+    word-wrap:break-word;
+}
+
+img {
     width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
+    z-index: -1
 }
-
-
-
-
-
-

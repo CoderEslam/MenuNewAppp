@@ -15,14 +15,14 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCOfDEZ53HCsYGncgrKKKjh4GUKBNOlhZU",
-    authDomain: "menuapp-a9ad6.firebaseapp.com",
-    databaseURL: "https://menuapp-a9ad6-default-rtdb.firebaseio.com",
-    projectId: "menuapp-a9ad6",
-    storageBucket: "menuapp-a9ad6.appspot.com",
-    messagingSenderId: "996949732005",
-    appId: "1:996949732005:web:f8e2dcd5ad261d9a49fb4c",
-    measurementId: "G-B5519WKM3F"
+    apiKey: "AIzaSyChTcZkG-eR3ORGwHlj0Ngt_9IX81mstSg",
+    authDomain: "coin-chaud-b92a3.firebaseapp.com",
+    databaseURL: "https://coin-chaud-b92a3-default-rtdb.firebaseio.com",
+    projectId: "coin-chaud-b92a3",
+    storageBucket: "coin-chaud-b92a3.appspot.com",
+    messagingSenderId: "640564602709",
+    appId: "1:640564602709:web:8a5f17cf3b83c1893bf1dc",
+    measurementId: "G-WW13X65J74"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -49,6 +49,7 @@ function gerAllMenus() {
             }
             c++;
         }
+        console.log(arrayMenu);
         // to sort array by index of menu
         arrayMenu.sort((a, b) => a.index - b.index);
         getAllFood();
@@ -59,98 +60,62 @@ function getAllFood() {
     onValue(Food, (snapshotFood) => {
         food = snapshotFood.val();
         for (let i = 0; i < arrayMenu.length; i++) {
-            var div = document.createElement("div");
-            div.style.backgroundImage = 'url(image/bye.jpeg)' /*new URL(arrayMenu[i].image_bg).href*/;
-            div.style.width = '100%'
-            div.style.marginTop = '230px'
-            // table.setAttribute('background', new URL(arrayMenu[i].image_bg).href);
+            var div_parent = document.createElement('div');
+            var img = document.createElement('img');
+            div_parent.setAttribute('class', 'container');
+            img.setAttribute('src', arrayMenu[i].image_bg);
+            var div_centered = document.createElement('div');
+            div_centered.setAttribute('class', 'centered');
+            if (arrayMenu[i].name === 'PÂTES') {
+                div_centered.style.marginTop = '650px';
+            }
+            div_parent.append(div_centered)
+            div_parent.append(img)
             for (let j in food) {
                 if (food[j].classification !== "VIP") {
                     if (arrayMenu[i].id === food[j].idMenu) {
-                        var div_row = document.createElement("div");
-                        var nameSpan = document.createElement("span");
-                        var _dots_Span = document.createElement("span");
-                        var priceSpan = document.createElement("span");
-                        nameSpan.innerHTML = food[j].name;
-                        _dots_Span.innerHTML = "..................................................................";
-                        ////////////////////////////////////Price//////////////////////////////////////////
-                        var tablePrice = document.createElement("table");
-                        tablePrice.setAttribute('class', 'tablePrice');
-                        var small = document.createElement("th");
-                        small.setAttribute('class', 'thPrice');
-                        small.innerHTML = "Small"
-                        var Medium = document.createElement("th");
-                        Medium.setAttribute('class', 'thPrice');
-                        Medium.innerHTML = "Medium"
-                        var Large = document.createElement("th");
-                        Large.setAttribute('class', 'thPrice');
-                        Large.innerHTML = "Large"
-                        tablePrice.appendChild(small);
-                        tablePrice.appendChild(Medium);
-                        tablePrice.appendChild(Large);
-                        var trPrice = document.createElement("tr");
-                        var nameSmall = document.createElement("td");
-                        nameSmall.setAttribute('class', 'tdPrice');
-                        var nameMedium = document.createElement("td");
-                        nameMedium.setAttribute('class', 'tdPrice');
-                        var nameLarge = document.createElement("td");
-                        nameLarge.setAttribute('class', 'tdPrice');
+                        var spanName = document.createElement('span')
+                        spanName.setAttribute('class', 'nameSpan')
+                        var spanDot = document.createElement('span')
+                        spanDot.setAttribute('class', 'dots');
+                        var spanPrice = document.createElement('span')
+                        var _div_ = document.createElement('div')
+                        spanName.innerHTML = food[j].name + " : ......................................"
+                        if (arrayMenu[i].name.toUpperCase() === 'PÂTES' || arrayMenu[i].name.toUpperCase() === 'PATES') {
+                            spanName.innerHTML = food[j].name + '&ensp;' + ':......................................'
+                            spanDot.style.width = '450px'
+                            spanDot.style.maxWidth = '450px'
+                            if (food[j].details.length > 0) {
+                                spanDot.innerHTML = food[j].details + '.................................................................................. '
+                            } else {
+                                spanDot.innerHTML = '.................................................................................. '
+                            }
+                        } else {
+                            spanDot.innerHTML = '.................................................. '
+                        }
                         // for all
-                        if ((food[j].priceSmall !== 0 && typeof food[j].priceSmall !== 'undefined') && (food[j].priceMedium !== 0 && typeof food[j].priceMedium !== 'undefined') && (food[j].priceLarge !== 0 && typeof food[j].priceLarge !== 'undefined')) {
-                            nameSmall.innerHTML = food[j].priceSmall;
-                            nameMedium.innerHTML = food[j].priceMedium;
-                            nameLarge.innerHTML = food[j].priceLarge;
-                            trPrice.appendChild(nameSmall);
-                            trPrice.appendChild(nameMedium);
-                            trPrice.appendChild(nameLarge);
-                            tablePrice.appendChild(trPrice);
-                            priceSpan.appendChild(tablePrice)
-                            // price.innerHTML = food[j].priceSmall + "" + "<sup>S</sup>" + "    " + food[j].priceMedium + "" + "<sup>M</sup>" + "    " + food[j].priceLarge + "" + "<sup>L</sup>";
+                        if (food[j].priceSmall !== 0 && food[j].priceMedium !== 0 && food[j].priceLarge !== 0) {
+                            spanPrice.innerHTML = food[j].priceSmall + "<span><sup>S</sup>&ensp;&ensp;</span>" + food[j].priceMedium + "<span><sup>M</sup>&ensp;&ensp;</span>" + food[j].priceLarge + "<span><sup>L</sup>&ensp;&ensp;</span>"
                         }
-                        // for no one done
-                        else if (typeof food[j].priceSmall === 'undefined' && typeof food[j].priceMedium === 'undefined' && typeof food[j].priceLarge === 'undefined') {
-                            priceSpan.innerHTML = "there is no money" + " " + "<sup>Dh</sup>";
+                        // for small only
+                        else if (food[j].priceSmall !== 0 && (food[j].priceMedium === 0 || food[j].priceMedium === 'undefined') && (food[j].priceLarge === 0 || food[j].priceLarge === 'undefined')) {
+                            spanPrice.innerHTML = food[j].priceSmall + "<span><sup>Dh</sup</span>";
                         }
-                        // for no one done
-                        else if ((food[j].priceSmall === 0 || typeof food[j].priceSmall === 'undefined') && (typeof food[j].priceMedium === 'undefined' || food[j].priceMedium === 0) && (typeof food[j].priceLarge === 'undefined' || food[j].priceLarge === 0)) {
-                            priceSpan.innerHTML = "there is no money" + " " + "<sup>Dh</sup>";
+                        // for small and medium
+                        else if (food[j].priceSmall !== 0 && (food[j].priceMedium !== 0 && food[j].priceMedium !== 'undefined') && (food[j].priceLarge === 0 || food[j].priceLarge === 'undefined')) {
+                            spanPrice.innerHTML = food[j].priceSmall + "<span><sup>S</sup>&ensp;&ensp;</span>" + food[j].priceMedium + "<span><sup>M</sup>&ensp;&ensp;</span>" + '--' + "<span><sup>L</sup>&ensp;&ensp;</span>"
                         }
-                        // for small and Medium
-                        else if ((food[j].priceSmall !== 0 && typeof food[j].priceSmall !== 'undefined') && (food[j].priceMedium !== 0 && typeof food[j].priceMedium !== 'undefined') && (typeof food[j].priceLarge === 'undefined' || food[j].priceLarge === 0)) {
-                            nameSmall.innerHTML = food[j].priceSmall;
-                            nameMedium.innerHTML = food[j].priceMedium;
-                            nameLarge.innerHTML = "--";
-                            trPrice.appendChild(nameSmall);
-                            trPrice.appendChild(nameMedium);
-                            trPrice.appendChild(nameLarge);
-                            tablePrice.appendChild(trPrice);
-                            priceSpan.appendChild(tablePrice)
+                        // for small and large
+                        else if (food[j].priceSmall !== 0 && (food[j].priceMedium === 0 || food[j].priceMedium === 'undefined') && (food[j].priceLarge !== 0 && food[j].priceLarge !== 'undefined')) {
+                            spanPrice.innerHTML = food[j].priceSmall + "<span><sup>S</sup>&ensp;&ensp;</span>" + '--' + "<span><sup>M</sup>&ensp;&ensp;</span>" + food[j].priceLarge + "<span><sup>L</sup>&ensp;&ensp;</span>"
                         }
-                        // for small and Large
-                        else if ((food[j].priceSmall !== 0 && typeof food[j].priceSmall !== 'undefined') && (food[j].priceLarge !== 0 && typeof food[j].priceLarge !== 'undefined') && (typeof food[j].priceMedium === 'undefined' || food[j].priceMedium === 0)) {
-                            nameSmall.innerHTML = food[j].priceSmall;
-                            nameMedium.innerHTML = "--";
-                            nameLarge.innerHTML = food[j].priceLarge;
-                            trPrice.appendChild(nameSmall);
-                            trPrice.appendChild(nameMedium);
-                            trPrice.appendChild(nameLarge);
-                            tablePrice.appendChild(trPrice);
-                            priceSpan.appendChild(tablePrice)
-                        } else if ((food[j].priceSmall !== 0 && typeof food[j].priceSmall !== 'undefined') && (food[j].priceMedium === 0 || typeof food[j].priceMedium === 'undefined') && (food[j].priceLarge === 0 || typeof food[j].priceLarge === 'undefined')) {
-                            priceSpan.innerHTML = food[j].priceSmall + " " + "<sup>Dh</sup>";
-                        } else if ((food[j].priceSmall === 0 || typeof food[j].priceSmall === 'undefined') && (food[j].priceMedium === 0 || typeof food[j].priceMedium === 'undefined') && (food[j].priceLarge === 0 || typeof food[j].priceLarge === 'undefined')) {
-                            priceSpan.innerHTML = "there is no money" + " " + "<sup>Dh</sup>";
-                        }
-                        ////////////////////////////////////Price//////////////////////////////////////////
-                        div_row.appendChild(nameSpan);
-                        div_row.appendChild(_dots_Span);
-                        div_row.appendChild(priceSpan);
-                        div.appendChild(div_row);
-                        // table_div.appendChild(div)
-                        document.getElementById('table_div').appendChild(div);
+                        div_centered.append(spanName);
+                        div_centered.append(spanDot);
+                        div_centered.append(spanPrice);
+                        div_centered.append(_div_);
+                        document.getElementById('parent').append(div_parent);
                     }
                 }
-
             }
         }
 
